@@ -11,11 +11,12 @@ namespace HeapsAlgorithm_Permutations
             var all = new List<List<int>>();
 
             // initialize
-            string str = "1234";
+            string str = "12";
             int[] arr = str.Select(c => c - '0').ToArray();
 
-            GetPer(arr, all);
+            GetPer(arr, all);  // normal permutations example
 
+            //GetPerAlternateParity(arr, all);  // alternating permutations example
 
             PrintAll(all);
         }
@@ -54,6 +55,47 @@ namespace HeapsAlgorithm_Permutations
                     Swap(ref a[k], ref a[i]);
                     GetPer(a, k + 1, m, all);
                     Swap(ref a[k], ref a[i]);
+                }
+        }
+
+        public static void GetPerAlternateParity(int[] a, List<List<int>> all)
+        {
+            //int x = a.Length - 1;
+            int x = a.Length - 1;
+            GetPerAlternateParity(a.ToArray(), 0, x, all);
+        }
+
+        private static void GetPerAlternateParity(int[] a, int k, int m, List<List<int>> all)
+        {
+            if (k == m)
+            {
+                List<int> l = new List<int>();
+                l.AddRange(a);
+                all.Add(l);
+
+            }
+            else
+                for (int i = k; i <= m; i++)
+                {
+                    bool isEven = ((a[k] + a[i]) % 2 == 0);
+
+                    if (isEven)
+                    {
+                        Swap(ref a[k], ref a[i]);
+
+                        GetPerAlternateParity(a, k + 1, m, all);
+                    }
+                    else if (a.Length == 2) {
+                        Swap(ref a[k], ref a[i]);
+
+                        GetPerAlternateParity(a, k + 1, m, all);
+                    }
+
+
+                    //isEven = ((a[k] + a[i]) % 2 == 0);
+
+                    //if (isEven)
+                    //    Swap(ref a[k], ref a[i]);
                 }
         }
 

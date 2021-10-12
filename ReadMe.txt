@@ -21,3 +21,8 @@ https://stackoverflow.com/questions/756055/listing-all-permutations-of-a-string-
 
 thank you,
 Sam Klok
+
+
+======================================
+Sometimes we need to do "Alternating parity permutations". So even permutate with even, odd with odd.
+See attached images with details about this task, and solition is in method GetPerAlternateParity.
